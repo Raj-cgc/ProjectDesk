@@ -90,7 +90,7 @@ const authSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.isLoggingIn = false;
-        state.authUser = action.payload;
+        state.authUser = action.payload.user;
       })
       .addCase(login.rejected, (state) => {
         state.isLoggingIn = false;

@@ -93,7 +93,7 @@ const LoginPage = () => {
               <BookOpen className="w-8 h-8 text-white" />
             </div>
             <h1 className="text-2xl font-bold text-slate-800">
-              Educational Project Management
+              Welcome to ProjectDESK
             </h1>
             <p className="text-slate-600 mt-2">Sign in to your account</p>
           </div>
