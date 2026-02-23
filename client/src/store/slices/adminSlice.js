@@ -118,7 +118,7 @@ const adminSlice = createSlice({
       })
       .addCase(updateStudent.fulfilled, (state, action) => {
         if (state.users)
-          state.users.map((user) =>
+          state.users = state.users.map((user) =>
             user._id === action.payload._id
               ? { ...user, ...action.payload }
               : user,
@@ -135,7 +135,7 @@ const adminSlice = createSlice({
       })
       .addCase(updateTeacher.fulfilled, (state, action) => {
         if (state.users)
-          state.users.map((user) =>
+          state.users = state.users.map((user) =>
             user._id === action.payload._id
               ? { ...user, ...action.payload }
               : user,
