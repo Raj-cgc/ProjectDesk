@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AddStudent from "../../components/modal/AddStudent";
 import {
-  createStudent,
   deleteStudent,
   getAllUsers,
   updateStudent,
@@ -88,8 +87,6 @@ const ManageStudents = () => {
 
     if (editingStudent) {
       dispatch(updateStudent({ id: editingStudent._id, data: formData }));
-    } else {
-      dispatch(createStudent(formData));
     }
     handleCloseModal();
   };
@@ -112,9 +109,9 @@ const ManageStudents = () => {
   const confirmDelete = () => {
     if (studentToDelete) {
       dispatch(deleteStudent(studentToDelete._id));
+      setShowDeleteModal(false);
+      setStudentToDelete(null);
     }
-    setShowDeleteModal(false);
-    setStudentToDelete(null);
   };
 
   const cancelDelete = () => {
