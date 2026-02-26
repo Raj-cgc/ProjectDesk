@@ -1,8 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AddTeacher from "../../components/modal/AddTeacher";
-import { deleteTeacher, getAllUsers } from "../../store/slices/adminSlice";
-
+import {
+  deleteTeacher,
+  getAllUsers,
+  updateTeacher,
+} from "../../store/slices/adminSlice";
+import { toggleTeacherModal } from "../../store/slices/popupSlice";
 const ManageTeachers = () => {
   const { users } = useSelector((state) => state.admin);
   const { isCreateTeacherModalOpen } = useSelector((state) => state.popup);
@@ -66,7 +70,7 @@ const handleSubmit = (e) => {
   e.preventDefault();
 
   if (editingTeacher) {
-    dispatch(updateStudent({ id: editingTeacher._id, data: formData }));
+    dispatch(updateTeacher({ id: editingTeacher._id, data: formData }));
   }
   handleCloseModal();
 };
