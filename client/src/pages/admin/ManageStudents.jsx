@@ -1,11 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AddStudent from "../../components/modal/AddStudent";
-import {
-  deleteStudent,
-  getAllUsers,
-  updateStudent,
-} from "../../store/slices/adminSlice";
+import { deleteStudent, updateStudent } from "../../store/slices/adminSlice";
 import {
   AlertTriangle,
   CheckCircle,
@@ -33,10 +29,6 @@ const ManageStudents = () => {
   });
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getAllUsers());
-  }, []);
 
   const students = useMemo(() => {
     const studentUsers = (users || []).filter(
@@ -266,11 +258,6 @@ const ManageStudents = () => {
                             <div className="text-sm  text-slate-500">
                               {student.email}
                             </div>
-                            {student.studentId && (
-                              <div className="text-xs text-slate-400">
-                                ID: {student.studentId}
-                              </div>
-                            )}
                           </div>
                         </td>
 
