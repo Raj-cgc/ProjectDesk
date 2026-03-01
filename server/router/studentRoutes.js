@@ -22,7 +22,7 @@ router.post(
 );
 
 router.post(
-  "/proposal",
+  "/project-proposal",
   isAuthenticated,
   isAuthorized("Student"),
   submitProposal,
