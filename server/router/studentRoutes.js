@@ -4,6 +4,8 @@ import {
   submitProposal,
   uploadFiles,
   getAvailableSupervisors,
+  getSupervisor,
+  requestSupervisor,
 } from "../controllers/studentController.js";
 import multer from "multer";
 import {
@@ -42,6 +44,20 @@ router.get(
   isAuthenticated,
   isAuthorized("Student"),
   getAvailableSupervisors,
+);
+
+router.get(
+  "/supervisor",
+  isAuthenticated,
+  isAuthorized("Student"),
+  getSupervisor,
+);
+
+router.post(
+  "/request-supervisor",
+  isAuthenticated,
+  isAuthorized("Student"),
+  requestSupervisor,
 );
 
 export default router;

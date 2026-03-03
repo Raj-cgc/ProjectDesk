@@ -25,8 +25,6 @@ const SubmitProposal = () => {
       dispatch(submitProjectProposal(formData));
       setIsLoading(false);
     } catch (error) {
-      console.log();
-      
       setIsLoading(false);
     }
   };
