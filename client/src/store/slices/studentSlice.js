@@ -61,10 +61,13 @@ export const requestSupervisor = createAsyncThunk(
   "student/requestSupervisor",
   async (data, thunkAPI) => {
     try {
-      const res = await axiosInstance.get(`/student/request-supervisor`,data);
+      const res = await axiosInstance.get(`/student/request-supervisor`, data);
+      thunkAPI.dispatch(getSupervisor());
       return res.data.data?.request;
     } catch (error) {
-      toast.error(error.response.data.message || "Failed to request supervisor");
+      toast.error(
+        error.response.data.message || "Failed to request supervisor",
+      );
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
   },
@@ -83,7 +86,20 @@ const studentSlice = createSlice({
     status: null,
   },
   reducers: {},
-  extraReducers: (builder) => {},
+  extraReducers: (builder) => {
+    builder.addCase(submitProjectProposal.fulfilled, (state, action) => {
+      state.project = action.payload?.project || action.payload;
+    });
+    builder.addCase(fetchProject.fulfilled, (state, action) => {
+      state.project = action.payload?.project || action.payload || null;
+    });
+    builder.addCase(getSupervisor.fulfilled, (state, action) => {
+      state.supervisor = action.payload?.supervisor || action.payload || null;
+    });
+    builder.addCase(fetchAllSupervisors.fulfilled, (state, action) => {
+      state.supervisors = action.payload?.supervisors || action.payload || [];
+    });
+  },
 });
 
 export default studentSlice.reducer;
